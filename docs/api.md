@@ -10,3 +10,4 @@
 | GET | `/api/shopfloor/dashboard` | 知识运营工作台 |
 | POST | `/api/shopfloor/work-orders/{id}/reports` | 提交知识质量反馈 |
 | POST | `/api/shopfloor/ai-preview` | 调用可替换 AI Provider 生成演示回答 |
+| POST | `/api/shopfloor/retrieval-quality` | 评估引用覆盖率、相似度和人工复核要求 |

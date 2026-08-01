@@ -27,6 +27,8 @@
 知识源 → 解析清洗 → 语义切片 → 混合检索 → 重排 → 引用回答 → 质量反馈
 ```
 
+新增的检索质量评估接口会计算引用覆盖率和相似度置信等级，并根据敏感问题、低引用覆盖或低相似度给出继续检索、人工复核或直接回答建议，避免低依据内容直接进入生成环节。
+
 ## 工程与运行
 
 后端采用 Java 21、Spring Boot、Spring Security、JWT、JPA 与 Flyway；前端采用 Vue 3、Pinia、Vue Router、Axios 和 Vite；生产数据库为 MySQL 8，测试使用 H2。工程包名 `cn.zhuatech.rag`，默认数据库 `zhuatech_rag`。

@@ -8,5 +8,10 @@ import org.junit.jupiter.api.*; import org.springframework.beans.factory.annotat
     @Test void operatorCanReadShopfloorDashboard()throws Exception{mvc.perform(get("/api/shopfloor/dashboard").header("Authorization","Bearer "+operatorToken)).andExpect(status().isOk()).andExpect(jsonPath("$.success").value(true)).andExpect(jsonPath("$.data.metrics[0].label").value("文档计划数量"));}
     @Test void plannerCanReadWorkRecords()throws Exception{mvc.perform(get("/api/admin/work-orders").header("Authorization","Bearer "+plannerToken)).andExpect(status().isOk()).andExpect(jsonPath("$.data.length()").value(3));}
     @Test void operatorCanSubmitProductionReport()throws Exception{mvc.perform(post("/api/shopfloor/work-orders/1/reports").header("Authorization","Bearer "+operatorToken).contentType(MediaType.APPLICATION_JSON).content("{\"operationName\":\"索引复核\",\"goodQty\":2,\"defectQty\":1,\"remark\":\"数据完整\"}")).andExpect(status().isOk()).andExpect(jsonPath("$.message").value("反馈提交成功")).andExpect(jsonPath("$.data.completedQty").value(3974));}
+    @Test void operatorCanEvaluateRetrievalQuality()throws Exception{mvc.perform(post("/api/shopfloor/retrieval-quality").header("Authorization","Bearer "+operatorToken).contentType(MediaType.APPLICATION_JSON).content("{\"query\":\"客户合同中的退款条款是什么\",\"retrievedChunks\":5,\"citedChunks\":2,\"averageSimilarity\":0.82,\"sensitiveQuery\":false}"))
+        .andExpect(status().isOk())
+        .andExpect(jsonPath("$.data.citationCoverage").value(0.4))
+        .andExpect(jsonPath("$.data.recommendation").value("RETRIEVE_MORE"))
+        .andExpect(jsonPath("$.data.suggestedTopK").value(8));}
     @Test void anonymousRequestIsDenied()throws Exception{mvc.perform(get("/api/admin/dashboard")).andExpect(status().isForbidden());}
 }
