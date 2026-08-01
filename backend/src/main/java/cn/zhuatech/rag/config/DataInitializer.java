@@ -1,0 +1,11 @@
+/* Copyright 2026 上海如静知华信息科技有限公司 */
+package cn.zhuatech.rag.config;
+import cn.zhuatech.rag.model.*; import cn.zhuatech.rag.repository.*; import org.springframework.boot.CommandLineRunner; import org.springframework.context.annotation.*; import org.springframework.security.crypto.password.PasswordEncoder; import java.time.LocalDate; import java.util.List;
+@Configuration public class DataInitializer {
+ @Bean CommandLineRunner seed(OperatingUnitRepository units,WorkRecordRepository records,ResourceRegisterRepository resources,ReviewRecordRepository reviews,UserRepository users,PasswordEncoder encoder){return args->{if(units.count()>0)return;
+  OperatingUnit rd=units.save(new OperatingUnit("RAG-RD","研发知识空间","产品与研发",9000)),cs=units.save(new OperatingUnit("RAG-CS","客户服务空间","客户成功部",6000)),hr=units.save(new OperatingUnit("RAG-HR","内部制度空间","人力行政部",2000));
+  WorkRecord a=records.save(new WorkRecord("ING-260801-018","KB-RD-PRODUCT","产品研发规范知识集",rd,4280,3972,18,LocalDate.now().plusDays(1),WorkRecord.Status.RUNNING,"INDEX-V3")); WorkRecord b=records.save(new WorkRecord("ING-260801-021","KB-CS-CASES","售后故障案例知识集",cs,2360,2360,3,LocalDate.now(),WorkRecord.Status.COMPLETED,"INDEX-V2")); WorkRecord c=records.save(new WorkRecord("ING-260802-006","KB-HR-POLICY","人力制度与员工手册",hr,916,704,27,LocalDate.now().plusDays(3),WorkRecord.Status.RELEASED,"CHUNK-V4"));
+  resources.saveAll(List.of(new ResourceRegister("KB-RD-001","研发知识空间",rd,ResourceRegister.Status.RUNNING,94),new ResourceRegister("KB-CS-002","客户服务空间",cs,ResourceRegister.Status.RUNNING,91),new ResourceRegister("KB-HR-003","内部制度空间",hr,ResourceRegister.Status.ALARM,72)));
+  reviews.saveAll(List.of(new ReviewRecord("EVAL-260801-032",a,"引用准确性",200,4,ReviewRecord.Result.PENDING,"许闻"),new ReviewRecord("EVAL-260801-011",b,"答案完整性",120,1,ReviewRecord.Result.PASSED,"林知行"),new ReviewRecord("EVAL-260728-018",c,"敏感信息检测",80,4,ReviewRecord.Result.FAILED,"许闻")));
+  String demo=encoder.encode("Demo@2026"); users.saveAll(List.of(new UserAccount("operator",demo,"林知行",UserAccount.Role.DOMAIN_USER,"RAG-RD"),new UserAccount("planner",demo,"许闻",UserAccount.Role.DOMAIN_OPERATOR,null),new UserAccount("quality",demo,"顾清",UserAccount.Role.QUALITY,null),new UserAccount("admin",encoder.encode("ZhuaTech@2026"),"系统管理员",UserAccount.Role.ADMIN,null)));};}
+}
