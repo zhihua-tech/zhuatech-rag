@@ -5,6 +5,7 @@ import cn.zhuatech.rag.ai.AiProvider;
 import cn.zhuatech.rag.common.ApiResponse;
 import cn.zhuatech.rag.dto.RagDto.*;
 import cn.zhuatech.rag.service.RagService;
+import cn.zhuatech.rag.service.GroundedAnswerGuardService;
 import cn.zhuatech.rag.service.RetrievalQualityService;
 import jakarta.validation.Valid;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -19,11 +20,14 @@ public class WorkspaceController {
     private final RagService service;
     private final AiProvider ai;
     private final RetrievalQualityService qualityService;
+    private final GroundedAnswerGuardService answerGuardService;
 
-    public WorkspaceController(RagService service, AiProvider ai, RetrievalQualityService qualityService) {
+    public WorkspaceController(RagService service, AiProvider ai, RetrievalQualityService qualityService,
+                               GroundedAnswerGuardService answerGuardService) {
         this.service = service;
         this.ai = ai;
         this.qualityService = qualityService;
+        this.answerGuardService = answerGuardService;
     }
 
     @GetMapping("/dashboard")
@@ -42,5 +46,10 @@ public class WorkspaceController {
     @PostMapping("/retrieval-quality")
     public ApiResponse<RetrievalQualityService.QualityResult> evaluateRetrieval(@Valid @RequestBody RetrievalQualityService.QualityRequest request) {
         return ApiResponse.ok("检索质量评估完成", qualityService.evaluate(request));
+    }
+
+    @PostMapping("/answer-guard")
+    public ApiResponse<GroundedAnswerGuardService.Result> guardAnswer(@Valid @RequestBody GroundedAnswerGuardService.Request request) {
+        return ApiResponse.ok("回答安全门禁评估完成", answerGuardService.evaluate(request));
     }
 }

@@ -13,5 +13,10 @@ import org.junit.jupiter.api.*; import org.springframework.beans.factory.annotat
         .andExpect(jsonPath("$.data.citationCoverage").value(0.4))
         .andExpect(jsonPath("$.data.recommendation").value("RETRIEVE_MORE"))
         .andExpect(jsonPath("$.data.suggestedTopK").value(8));}
+    @Test void operatorCanRunGroundedAnswerGuard()throws Exception{mvc.perform(post("/api/shopfloor/answer-guard").header("Authorization","Bearer "+operatorToken).contentType(MediaType.APPLICATION_JSON).content("{\"question\":\"现行退款条款是什么\",\"totalClaims\":5,\"citedClaims\":3,\"averageSimilarity\":0.82,\"sourceFreshnessDays\":240,\"promptInjectionDetected\":false,\"sensitiveDataDetected\":false}"))
+        .andExpect(status().isOk())
+        .andExpect(jsonPath("$.data.citationCoverage").value(0.6))
+        .andExpect(jsonPath("$.data.riskScore").value(44.3))
+        .andExpect(jsonPath("$.data.decision").value("HUMAN_REVIEW"));}
     @Test void anonymousRequestIsDenied()throws Exception{mvc.perform(get("/api/admin/dashboard")).andExpect(status().isForbidden());}
 }
