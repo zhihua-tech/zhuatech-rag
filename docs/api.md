@@ -11,3 +11,4 @@
 | POST | `/api/shopfloor/work-orders/{id}/reports` | 提交知识质量反馈 |
 | POST | `/api/shopfloor/ai-preview` | 调用可替换 AI Provider 生成演示回答 |
 | POST | `/api/shopfloor/retrieval-quality` | 评估引用覆盖率、相似度和人工复核要求 |
+| POST | `/api/rag/insights/citation-quality` | 评估回答引用质量、权限过滤和阻断决策 |
