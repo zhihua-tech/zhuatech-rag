@@ -1,4 +1,4 @@
-/* Copyright 2026 上海如静知华信息科技有限公司 */
+/* Copyright 2026 上海如静知华信息科技有限公司 · https://www.zhuatech.cn/ */
 export const domain={
  code:'RAG',systemName:'企业知识库与 RAG 智能问答平台',englishName:'ENTERPRISE RETRIEVAL AUGMENTED GENERATION',theme:{primary:'#335d8f',dark:'#1d2b3c',accent:'#d69a4b'},workspace:'知识智能中心 / 企业知识运营',fieldWorkspace:'研发知识空间',period:'2026-08-01 · 知识质量周报',liveText:'知识索引于 10:18 完成增量更新',fieldContextLabel:'当前空间',fieldContext:'产品研发 · 内部级',fieldUser:'林知行',fieldRole:'知识运营专员',adminUser:'许闻',adminRole:'知识平台主管',
  adminTitle:'企业知识智能运营中心',adminBreadcrumb:'知识智能 / 运营总览',adminSubtitle:'统一观察知识接入、切片索引、召回质量、问答反馈与安全引用。',exportAction:'导出知识质量简报',createAction:'新建知识空间',chartTitle:'有效问答率与目标趋势',chartSubtitle:'有依据回答 / 全部问答',chartLabels:['第1周','第2周','第3周','第4周','第5周','第6周','第7周','第8周','第9周'],loadTitle:'知识空间覆盖率',loadSubtitle:'已完成索引的有效文档比例',recordsTitle:'知识摄取任务',recordsSubtitle:'按索引进度与质量风险排序',issueTitle:'知识质量提醒',issueSubtitle:'需要知识管理员处理的异常',recordName:'摄取任务',itemName:'数据源 / 文档集',unitName:'知识空间',batchName:'处理阶段',planName:'文档数',doneName:'已索引',exceptionName:'异常切片',unitLabel:'份',

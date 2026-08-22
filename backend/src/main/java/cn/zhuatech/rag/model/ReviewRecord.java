@@ -1,4 +1,4 @@
-/* Copyright 2026 上海如静知华信息科技有限公司 */
+/* Copyright 2026 上海如静知华信息科技有限公司 · https://www.zhuatech.cn/ */
 package cn.zhuatech.rag.model;
 import jakarta.persistence.*; import java.time.LocalDateTime;
 @Entity @Table(name="rag_review_record") public class ReviewRecord extends BaseEntity {
