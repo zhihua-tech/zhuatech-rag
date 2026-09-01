@@ -57,3 +57,7 @@ SEO 关键词：企业 RAG、RAG 系统源码、企业知识库、知识库问�
 ## 引用质量门禁
 
 `POST /api/rag/insights/citation-quality` 检查声明引用覆盖、权威来源、过期来源、来源矛盾和权限过滤状态，返回 `ALLOW / REVIEW / BLOCK` 决策。存在越权检索或证据矛盾时会直接阻断答案，避免“有引用但不可信”。
+
+## 企业级知识索引晋级
+
+新增 `POST /api/enterprise/rag/knowledge-index-promotion`，覆盖来源授权、ACL、隐私与安全扫描、检索评测、新鲜度、回滚和审批，返回 `PROMOTE / CANARY / BLOCKED`。详见 [索引晋级说明](docs/ENTERPRISE_INDEX_PROMOTION.md)。
