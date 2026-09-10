@@ -18,5 +18,8 @@ import org.junit.jupiter.api.*; import org.springframework.beans.factory.annotat
         .andExpect(jsonPath("$.data.citationCoverage").value(0.6))
         .andExpect(jsonPath("$.data.riskScore").value(44.3))
         .andExpect(jsonPath("$.data.decision").value("HUMAN_REVIEW"));}
+    @Test void operatorCanDecideRetrievalAccess()throws Exception{mvc.perform(post("/api/enterprise/rag/retrieval-access-decision").header("Authorization","Bearer "+operatorToken).contentType(MediaType.APPLICATION_JSON).content("{\"tenantId\":\"tenant-a\",\"documentTenantId\":\"tenant-a\",\"userGroups\":[\"sales\"],\"allowedGroups\":[\"sales\"],\"purpose\":\"support\",\"allowedPurposes\":[\"support\"],\"classification\":\"INTERNAL\",\"identityVerified\":true,\"sourceActive\":true,\"aclFresh\":true,\"legalHoldRestricted\":false,\"sourceAgeDays\":10,\"maxSourceAgeDays\":30,\"citationCoverage\":0.9,\"minCitationCoverage\":0.8,\"piiDetected\":false,\"redactionAvailable\":true,\"humanApprovalComplete\":true}"))
+        .andExpect(status().isOk()).andExpect(jsonPath("$.data.decision").value("ALLOW"))
+        .andExpect(jsonPath("$.data.auditKey").isNotEmpty());}
     @Test void anonymousRequestIsDenied()throws Exception{mvc.perform(get("/api/admin/dashboard")).andExpect(status().isForbidden());}
 }

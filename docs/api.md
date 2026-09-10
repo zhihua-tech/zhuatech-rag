@@ -12,3 +12,5 @@
 | POST | `/api/shopfloor/ai-preview` | 调用可替换 AI Provider 生成演示回答 |
 | POST | `/api/shopfloor/retrieval-quality` | 评估引用覆盖率、相似度和人工复核要求 |
 | POST | `/api/rag/insights/citation-quality` | 评估回答引用质量、权限过滤和阻断决策 |
+| POST | `/api/enterprise/rag/knowledge-index-promotion` | 评估知识索引生产晋级条件 |
+| POST | `/api/enterprise/rag/retrieval-access-decision` | 执行租户、ACL、用途、分级与脱敏访问决策 |

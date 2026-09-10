@@ -61,3 +61,7 @@ SEO 关键词：企业 RAG、RAG 系统源码、企业知识库、知识库问�
 ## 企业级知识索引晋级
 
 新增 `POST /api/enterprise/rag/knowledge-index-promotion`，覆盖来源授权、ACL、隐私与安全扫描、检索评测、新鲜度、回滚和审批，返回 `PROMOTE / CANARY / BLOCKED`。详见 [索引晋级说明](docs/ENTERPRISE_INDEX_PROMOTION.md)。
+
+## 企业检索访问策略
+
+`POST /api/enterprise/rag/retrieval-access-decision` 在知识片段进入生成模型前校验租户、用户组 ACL、业务用途、数据分级、来源时效、引用覆盖率和个人信息脱敏，返回 `ALLOW / ALLOW_REDACTED / REVIEW / DENY`，并生成可归档的 SHA-256 审计键。详见[检索访问策略说明](docs/ENTERPRISE_RETRIEVAL_ACCESS_POLICY.md)。
