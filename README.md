@@ -65,3 +65,5 @@ SEO 关键词：企业 RAG、RAG 系统源码、企业知识库、知识库问�
 ## 企业检索访问策略
 
 `POST /api/enterprise/rag/retrieval-access-decision` 在知识片段进入生成模型前校验租户、用户组 ACL、业务用途、数据分级、来源时效、引用覆盖率和个人信息脱敏，返回 `ALLOW / ALLOW_REDACTED / REVIEW / DENY`，并生成可归档的 SHA-256 审计键。详见[检索访问策略说明](docs/ENTERPRISE_RETRIEVAL_ACCESS_POLICY.md)。
+
+`POST /api/enterprise/rag/evidence-coverage` 对回答中的每条声明逐项核验引用编号、租户与 ACL、来源时效、支持/反驳关系及个人信息脱敏状态。越权证据直接 `DENY`，矛盾证据 `REVIEW`，缺失或过期证据 `RETRIEVE_MORE`；所有声明均有有效支持证据才 `ALLOW`。
