@@ -12,9 +12,16 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 
-/** 对 RAG 检索结果做引用覆盖率和相似度门禁，避免低依据回答直接展示。 */
+/**
+ * 对 RAG 检索结果做引用覆盖率和相似度门禁，避免低依据回答直接展示。
+ *
+ * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+ */
 @Service
 public class RetrievalQualityService {
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     public QualityResult evaluate(QualityRequest request) {
         if (request.citedChunks() > request.retrievedChunks()) {
             throw new BusinessException("引用片段数量不能超过检索片段数量");
@@ -35,10 +42,16 @@ public class RetrievalQualityService {
         return new QualityResult(coverage, confidence, recommendation, suggestedTopK, List.copyOf(warnings));
     }
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     private double round(double value) {
         return Math.round(value * 1000d) / 1000d;
     }
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     public record QualityRequest(
         @NotBlank(message = "请输入检索问题") String query,
         @Positive(message = "检索片段数量必须大于 0") int retrievedChunks,
@@ -48,6 +61,9 @@ public class RetrievalQualityService {
         boolean sensitiveQuery
     ) {}
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     public record QualityResult(
         double citationCoverage,
         String confidence,

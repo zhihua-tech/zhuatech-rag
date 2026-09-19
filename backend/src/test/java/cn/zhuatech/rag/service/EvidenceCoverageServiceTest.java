@@ -9,19 +9,31 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+/**
+ * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+ */
 class EvidenceCoverageServiceTest {
     private final EvidenceCoverageService service = new EvidenceCoverageService();
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     private EvidenceCoverageService.Evidence evidence(String id, EvidenceCoverageService.Stance stance) {
         return new EvidenceCoverageService.Evidence(id, "tenant-a", true, true, 5, stance, false, false);
     }
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     private EvidenceCoverageService.Request request(List<String> citations,
                                                      List<EvidenceCoverageService.Evidence> evidence) {
         return new EvidenceCoverageService.Request("tenant-a", 30,
                 List.of(new EvidenceCoverageService.Claim("claim-1", citations)), evidence);
     }
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     @Test
     void allowsClaimWithCurrentAuthorizedSupportingEvidence() {
         var result = service.evaluate(request(List.of("DOC-1"),
@@ -30,6 +42,9 @@ class EvidenceCoverageServiceTest {
         assertThat(result.claims().getFirst().supportingEvidence()).isEqualTo(1);
     }
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     @Test
     void requestsMoreEvidenceForMissingOrStaleCitation() {
         var stale = new EvidenceCoverageService.Evidence("DOC-1", "tenant-a", true, true, 45,
@@ -39,6 +54,9 @@ class EvidenceCoverageServiceTest {
         assertThat(result.claimsNeedingRetrieval()).isEqualTo(1);
     }
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     @Test
     void sendsContradictoryEvidenceForReview() {
         var result = service.evaluate(request(List.of("DOC-1", "DOC-2"), List.of(
@@ -47,6 +65,9 @@ class EvidenceCoverageServiceTest {
         assertThat(result.decision()).isEqualTo(EvidenceCoverageService.Decision.REVIEW);
     }
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     @Test
     void deniesCrossTenantOrUnredactedPiiEvidence() {
         var forbidden = new EvidenceCoverageService.Evidence("DOC-1", "tenant-b", true, true, 2,
@@ -55,6 +76,9 @@ class EvidenceCoverageServiceTest {
         assertThat(result.decision()).isEqualTo(EvidenceCoverageService.Decision.DENY);
     }
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     @Test
     void rejectsDuplicateEvidenceIds() {
         assertThatThrownBy(() -> service.evaluate(request(List.of("DOC-1"), List.of(

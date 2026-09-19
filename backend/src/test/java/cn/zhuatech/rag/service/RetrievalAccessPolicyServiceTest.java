@@ -7,9 +7,15 @@ import java.util.Set;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+/**
+ * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+ */
 class RetrievalAccessPolicyServiceTest {
     private final RetrievalAccessPolicyService service = new RetrievalAccessPolicyService();
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     @Test
     void allowsCurrentInternalKnowledgeWithTraceableCitation() {
         var result = service.decide(request(RetrievalAccessPolicyService.Classification.INTERNAL,
@@ -18,6 +24,9 @@ class RetrievalAccessPolicyServiceTest {
         assertThat(result.auditKey()).hasSize(64);
     }
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     @Test
     void allowsConfidentialKnowledgeOnlyAfterRedaction() {
         var result = service.decide(request(RetrievalAccessPolicyService.Classification.CONFIDENTIAL,
@@ -26,6 +35,9 @@ class RetrievalAccessPolicyServiceTest {
         assertThat(result.obligations()).contains("仅返回脱敏片段");
     }
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     @Test
     void reviewsRestrictedOrStaleKnowledge() {
         var result = service.decide(request(RetrievalAccessPolicyService.Classification.RESTRICTED,
@@ -34,6 +46,9 @@ class RetrievalAccessPolicyServiceTest {
         assertThat(result.obligations()).hasSize(3);
     }
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     @Test
     void deniesCrossTenantAndUnauthorizedRetrieval() {
         var base = request(RetrievalAccessPolicyService.Classification.INTERNAL,
@@ -46,6 +61,9 @@ class RetrievalAccessPolicyServiceTest {
         assertThat(result.blockers()).hasSize(5);
     }
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     private RetrievalAccessPolicyService.DecisionRequest request(
             RetrievalAccessPolicyService.Classification classification, boolean pii, boolean redaction,
             boolean aclFresh, int sourceAge, int maxAge, double citationCoverage, boolean approval) {

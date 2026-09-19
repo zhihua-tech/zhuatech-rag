@@ -9,15 +9,24 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+/**
+ * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+ */
 @RestController
 @RequestMapping("/api/enterprise/rag")
 public class RetrievalAccessPolicyController {
     private final RetrievalAccessPolicyService service;
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     public RetrievalAccessPolicyController(RetrievalAccessPolicyService service) {
         this.service = service;
     }
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     @PostMapping("/retrieval-access-decision")
     public ApiResponse<RetrievalAccessPolicyService.DecisionResult> decide(
             @Valid @RequestBody RetrievalAccessPolicyService.DecisionRequest request) {

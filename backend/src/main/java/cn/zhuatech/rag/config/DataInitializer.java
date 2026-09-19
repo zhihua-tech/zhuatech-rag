@@ -1,7 +1,13 @@
 /* Copyright 2026 上海如静知华信息科技有限公司 · https://www.zhuatech.cn/ */
 package cn.zhuatech.rag.config;
 import cn.zhuatech.rag.model.*; import cn.zhuatech.rag.repository.*; import org.springframework.boot.CommandLineRunner; import org.springframework.context.annotation.*; import org.springframework.security.crypto.password.PasswordEncoder; import java.time.LocalDate; import java.util.List;
+/**
+ * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+ */
 @Configuration public class DataInitializer {
+ /**
+  * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+  */
  @Bean CommandLineRunner seed(OperatingUnitRepository units,WorkRecordRepository records,ResourceRegisterRepository resources,ReviewRecordRepository reviews,UserRepository users,PasswordEncoder encoder){return args->{if(units.count()>0)return;
   OperatingUnit rd=units.save(new OperatingUnit("RAG-RD","研发知识空间","产品与研发",9000)),cs=units.save(new OperatingUnit("RAG-CS","客户服务空间","客户成功部",6000)),hr=units.save(new OperatingUnit("RAG-HR","内部制度空间","人力行政部",2000));
   WorkRecord a=records.save(new WorkRecord("ING-260801-018","KB-RD-PRODUCT","产品研发规范知识集",rd,4280,3972,18,LocalDate.now().plusDays(1),WorkRecord.Status.RUNNING,"INDEX-V3")); WorkRecord b=records.save(new WorkRecord("ING-260801-021","KB-CS-CASES","售后故障案例知识集",cs,2360,2360,3,LocalDate.now(),WorkRecord.Status.COMPLETED,"INDEX-V2")); WorkRecord c=records.save(new WorkRecord("ING-260802-006","KB-HR-POLICY","人力制度与员工手册",hr,916,704,27,LocalDate.now().plusDays(3),WorkRecord.Status.RELEASED,"CHUNK-V4"));

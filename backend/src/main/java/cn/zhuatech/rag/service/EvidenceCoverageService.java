@@ -16,9 +16,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-/** 将答案的每条声明与可访问、未过期的证据逐项核对。 */
+/**
+ * 将答案的每条声明与可访问、未过期的证据逐项核对。
+ *
+ * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+ */
 @Service
 public class EvidenceCoverageService {
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     public Result evaluate(Request request) {
         Map<String, Evidence> catalog = new HashMap<>();
         for (Evidence evidence : request.evidence()) {
@@ -76,23 +83,47 @@ public class EvidenceCoverageService {
         return new Result(decision, results.size(), denied, review, missing, List.copyOf(results));
     }
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     public record Request(@NotBlank String tenantId, @PositiveOrZero int maxEvidenceAgeDays,
                           @NotEmpty List<@Valid Claim> claims,
                           @NotEmpty List<@Valid Evidence> evidence) {}
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     public record Claim(@NotBlank String claimId, @NotEmpty List<@NotBlank String> citationIds) {}
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     public record Evidence(@NotBlank String citationId, @NotBlank String tenantId,
                            boolean aclAllowed, boolean active, @PositiveOrZero int ageDays,
                            @NotNull Stance stance, boolean piiDetected, boolean redacted) {}
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     public record ClaimResult(String claimId, ClaimDecision decision, int supportingEvidence,
                               List<String> reasons) {}
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     public record Result(Decision decision, int totalClaims, int deniedClaims,
                          int reviewClaims, int claimsNeedingRetrieval, List<ClaimResult> claims) {}
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     public enum Stance { SUPPORT, CONTRADICT, NEUTRAL }
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     public enum ClaimDecision { ALLOW, RETRIEVE_MORE, REVIEW, DENY }
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     public enum Decision { ALLOW, RETRIEVE_MORE, REVIEW, DENY }
 }

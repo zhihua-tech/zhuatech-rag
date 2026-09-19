@@ -18,9 +18,16 @@ import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
 
-/** 在生成答案前执行租户、ACL、用途、数据分级与引用质量的统一访问决策。 */
+/**
+ * 在生成答案前执行租户、ACL、用途、数据分级与引用质量的统一访问决策。
+ *
+ * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+ */
 @Service
 public class RetrievalAccessPolicyService {
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     public DecisionResult decide(DecisionRequest request) {
         Set<String> userGroups = safe(request.userGroups());
         Set<String> allowedGroups = safe(request.allowedGroups());
@@ -68,16 +75,25 @@ public class RetrievalAccessPolicyService {
         return result(Decision.ALLOW, request, blockers, obligations);
     }
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     private DecisionResult result(Decision decision, DecisionRequest request,
                                   List<String> blockers, List<String> obligations) {
         return new DecisionResult(decision, List.copyOf(blockers), List.copyOf(obligations),
                 auditKey(request, decision));
     }
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     private Set<String> safe(Set<String> values) {
         return values == null ? Set.of() : Set.copyOf(values);
     }
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     private String auditKey(DecisionRequest request, Decision decision) {
         String source = String.join("|", request.tenantId(), request.documentTenantId(), request.purpose(),
                 request.classification().name(), decision.name(),
@@ -91,6 +107,9 @@ public class RetrievalAccessPolicyService {
         }
     }
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     public record DecisionRequest(
             @NotBlank String tenantId,
             @NotBlank String documentTenantId,
@@ -112,9 +131,18 @@ public class RetrievalAccessPolicyService {
             boolean humanApprovalComplete
     ) {}
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     public record DecisionResult(Decision decision, List<String> blockers,
                                  List<String> obligations, String auditKey) {}
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     public enum Classification { PUBLIC, INTERNAL, CONFIDENTIAL, RESTRICTED }
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     public enum Decision { ALLOW, ALLOW_REDACTED, REVIEW, DENY }
 }

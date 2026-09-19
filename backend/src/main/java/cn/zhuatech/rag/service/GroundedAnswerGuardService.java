@@ -12,9 +12,16 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 
-/** 在答案展示前检查声明引用、来源时效和安全信号，降低无依据回答进入业务流程的风险。 */
+/**
+ * 在答案展示前检查声明引用、来源时效和安全信号，降低无依据回答进入业务流程的风险。
+ *
+ * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+ */
 @Service
 public class GroundedAnswerGuardService {
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     public Result evaluate(Request request) {
         if (request.citedClaims() > request.totalClaims()) throw new BusinessException("已引用声明数不能超过声明总数");
         double coverage = round(request.citedClaims() * 1d / request.totalClaims());
@@ -43,8 +50,14 @@ public class GroundedAnswerGuardService {
         return new Result(request.question(), coverage, riskScore, decision, List.copyOf(reasons), nextAction);
     }
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     private double round(double value) { return Math.round(value * 10d) / 10d; }
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     public record Request(@NotBlank String question,
                           @Positive int totalClaims,
                           @PositiveOrZero int citedClaims,
@@ -52,6 +65,9 @@ public class GroundedAnswerGuardService {
                           @PositiveOrZero int sourceFreshnessDays,
                           boolean promptInjectionDetected,
                           boolean sensitiveDataDetected) {}
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     public record Result(String question, double citationCoverage, double riskScore,
                          String decision, List<String> reasons, String nextAction) {}
 }

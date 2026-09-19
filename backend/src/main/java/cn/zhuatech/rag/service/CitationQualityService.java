@@ -9,8 +9,14 @@ import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+ */
 @Service
 public class CitationQualityService {
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     public Result evaluate(Request request) {
         BigDecimal coverage = request.totalClaims() == 0 ? BigDecimal.ONE
             : BigDecimal.valueOf(Math.min(request.citedClaims(), request.totalClaims()))
@@ -33,10 +39,16 @@ public class CitationQualityService {
         return new Result(request.answerId(), coverage, score, decision, actions);
     }
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     public record Request(@NotBlank String answerId, @Min(0) int totalClaims,
                           @Min(0) int citedClaims, @Min(0) int authoritativeSources,
                           @Min(0) int staleSources, @Min(0) int contradictionCount,
                           boolean permissionFiltered) {}
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     public record Result(String answerId, BigDecimal citationCoverage, int qualityScore,
                          String decision, List<String> actions) {}
 }
