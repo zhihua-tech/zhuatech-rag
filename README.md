@@ -1,5 +1,7 @@
 # ZhuaTech RAG｜知华科技企业知识库与 RAG 智能问答平台
 
+[简体中文](README.md) | [English](README.en.md)
+
 > 面向企业内部知识检索、可信问答和知识治理的社区源码版，由知华科技（上海如静知华信息科技有限公司）发布。
 
 [知华科技官网](https://www.zhuatech.cn/) · [部署指南](deploy/README.md) · [接口文档](docs/api.md) · [许可说明](LICENSE)
