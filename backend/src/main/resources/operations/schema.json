@@ -1,0 +1,93 @@
+{
+  "slug": "rag",
+  "title": "回答引用覆盖与证据失效核对",
+  "fields": [
+    {
+      "key": "id",
+      "label": "记录编号",
+      "type": "ID"
+    },
+    {
+      "key": "claims",
+      "label": "可核验断言数",
+      "type": "NUMBER",
+      "scale": 0,
+      "min": "1",
+      "max": "1000000"
+    },
+    {
+      "key": "supported",
+      "label": "有引用支持断言数",
+      "type": "NUMBER",
+      "scale": 0,
+      "min": "0",
+      "max": "1000000"
+    },
+    {
+      "key": "sources",
+      "label": "引用来源数",
+      "type": "NUMBER",
+      "scale": 0,
+      "min": "0",
+      "max": "1000000"
+    },
+    {
+      "key": "expired",
+      "label": "过期来源数",
+      "type": "NUMBER",
+      "scale": 0,
+      "min": "0",
+      "max": "1000000"
+    },
+    {
+      "key": "revoked",
+      "label": "权限撤销来源数",
+      "type": "NUMBER",
+      "scale": 0,
+      "min": "0",
+      "max": "1000000"
+    },
+    {
+      "key": "requiredPct",
+      "label": "最低支持覆盖率%",
+      "type": "NUMBER",
+      "scale": 4,
+      "min": "0",
+      "max": "100"
+    }
+  ],
+  "columns": [
+    {
+      "key": "supportPct",
+      "label": "有支持断言%"
+    },
+    {
+      "key": "unsupportedClaims",
+      "label": "无支持断言数"
+    },
+    {
+      "key": "validSources",
+      "label": "有效来源数"
+    }
+  ],
+  "description": "按回答可核验断言数量核对有证据断言覆盖率，并扣除过期和被撤销的来源。这里只复核调用者提供的标注统计，不读取文档或自动判定事实真假。",
+  "owner": "上海如静知华信息科技有限公司",
+  "website": "https://www.zhuatech.cn/",
+  "authorization": "商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。",
+  "version": 1,
+  "notes": "输入均须为已获授权的同口径数据。金额固定人民币元；比例为百分数。核算结果只用于复核，未审批、未写库、未发起外部调用，也未触发付款、签名、资料销毁或设备控制。建议不构成法律、安全、会计或碳核证结论。",
+  "sample": {
+    "asOf": "2026-10-23",
+    "records": [
+      {
+        "id": "ITEM-001",
+        "claims": "10",
+        "supported": "9",
+        "sources": "5",
+        "expired": "0",
+        "revoked": "0",
+        "requiredPct": "90"
+      }
+    ]
+  }
+}

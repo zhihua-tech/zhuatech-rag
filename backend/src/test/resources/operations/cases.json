@@ -1,0 +1,63 @@
+[
+  {
+    "patch": {},
+    "expected": {
+      "decision": "PASS",
+      "supportPct": "#90",
+      "validSources": "#5"
+    },
+    "error": false
+  },
+  {
+    "patch": {
+      "supported": "8"
+    },
+    "expected": {
+      "decision": "HOLD"
+    },
+    "error": false
+  },
+  {
+    "patch": {
+      "expired": "1"
+    },
+    "expected": {
+      "decision": "REVIEW",
+      "validSources": "#4"
+    },
+    "error": false
+  },
+  {
+    "patch": {
+      "revoked": "1"
+    },
+    "expected": {
+      "decision": "HOLD"
+    },
+    "error": false
+  },
+  {
+    "patch": {
+      "supported": "11"
+    },
+    "expected": {},
+    "error": true
+  },
+  {
+    "patch": {
+      "expired": "3",
+      "revoked": "3"
+    },
+    "expected": {},
+    "error": true
+  },
+  {
+    "patch": {
+      "sources": "0"
+    },
+    "expected": {
+      "decision": "HOLD"
+    },
+    "error": false
+  }
+]
