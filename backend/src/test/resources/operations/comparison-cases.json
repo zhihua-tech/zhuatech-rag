@@ -1,0 +1,73 @@
+[
+  {
+    "patch": {},
+    "expected": {
+      "decision": "PASS",
+      "supportPct": "#90",
+      "validSources": "#5"
+    },
+    "error": false,
+    "baseline": {
+      "decision": "PASS",
+      "supportPct": "#90",
+      "validSources": "#5"
+    }
+  },
+  {
+    "patch": {
+      "supported": "8"
+    },
+    "expected": {
+      "decision": "HOLD"
+    },
+    "error": false,
+    "baseline": {
+      "decision": "PASS",
+      "supportPct": "#90",
+      "validSources": "#5"
+    }
+  },
+  {
+    "patch": {
+      "expired": "1"
+    },
+    "expected": {
+      "decision": "REVIEW",
+      "validSources": "#4"
+    },
+    "error": false,
+    "baseline": {
+      "decision": "PASS",
+      "supportPct": "#90",
+      "validSources": "#5"
+    }
+  },
+  {
+    "patch": {
+      "revoked": "1"
+    },
+    "expected": {
+      "decision": "HOLD"
+    },
+    "error": false,
+    "baseline": {
+      "decision": "PASS",
+      "supportPct": "#90",
+      "validSources": "#5"
+    }
+  },
+  {
+    "patch": {
+      "sources": "0"
+    },
+    "expected": {
+      "decision": "HOLD"
+    },
+    "error": false,
+    "baseline": {
+      "decision": "PASS",
+      "supportPct": "#90",
+      "validSources": "#5"
+    }
+  }
+]

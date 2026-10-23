@@ -1,0 +1,6 @@
+{
+  "patch": {
+    "supported": "8"
+  },
+  "description": "有引用支持断言数改为8"
+}
